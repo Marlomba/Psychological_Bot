@@ -22,6 +22,9 @@ def get_response(user_message, folder_id, chat_history=None):
         model = model.configure(temperature=0.7)
 
         messages = []
+        # Добавляем промт (роль психолога)
+        messages.append({"role": "system", "text": "Ты - опытный и сочувствующий психолог.  Отвечай на сообщения пользователей, стараясь понять их чувства и предложить поддержку и советы.  Избегай общих фраз и предлагай конкретные способы решения проблем."})
+
         if chat_history:
             messages.extend(chat_history) # Добавляем историю сообщений
         messages.append({"role": "user", "text": user_message}) # Добавляем сообщение пользователя
